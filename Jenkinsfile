@@ -17,9 +17,9 @@ node {
     stage('Maven build') {
         try {
             sh "${mvnHome}/bin/mvn -C clean package -Dbuild.number=jenkins-${env.BUILD_NUMBER}-${GIT_BRANCH}-${GIT_COMMIT}"
-            step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+            // step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
         } catch(err) {
-            step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+            // step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
             throw err
         }
     }
