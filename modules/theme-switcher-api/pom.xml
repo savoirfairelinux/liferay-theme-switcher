@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.savoirfairelinux.liferay</groupId>
-        <artifactId>liferay7-theme-switcher</artifactId>
+        <artifactId>theme-switcher</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../../</relativePath>
     </parent>
-    <artifactId>liferay7-theme-switcher-api</artifactId>
+    <artifactId>theme-switcher-api</artifactId>
     <packaging>bundle</packaging>
 
     <name>Theme Switcher API</name>
