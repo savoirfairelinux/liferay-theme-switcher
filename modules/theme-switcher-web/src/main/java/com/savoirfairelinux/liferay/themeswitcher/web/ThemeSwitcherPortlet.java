@@ -161,7 +161,7 @@ public class ThemeSwitcherPortlet extends GenericPortlet {
 
         String enabled = preferences.getValue(prefKeyEnabled, ThemeSwitcherConfiguration.DEFAULT_ENABLED);
         String selectedTheme = preferences.getValue(prefKeyThemeId, StringPool.BLANK);
-        List<String> selectedRoles = Arrays.asList(preferences.getValues(prefKeyRoleUuid, new String[0]));
+        List<String> selectedRoles = Arrays.asList(preferences.getValues(prefKeyRoleUuid, ThemeSwitcherConfiguration.DEFAULT_ROLE_UUIDS));
 
         request.setAttribute(REQUEST_PARAM_ENABLED, enabled);
         request.setAttribute(REQUEST_ATTR_ROLES, roles);

@@ -9,6 +9,9 @@ import com.liferay.application.list.constants.PanelCategoryKeys;
 import com.liferay.portal.kernel.model.Portlet;
 import com.savoirfairelinux.liferay.themeswitcher.meta.ThemeSwitcherPortletKeys;
 
+/**
+ * Module used to integrate the theme switcher configuration portlet into Liferay's left panel
+ */
 @Component(
     service = PanelApp.class,
     immediate = true,
