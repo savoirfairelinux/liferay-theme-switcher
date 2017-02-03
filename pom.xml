@@ -13,6 +13,7 @@
         <module>modules/theme-switcher-service</module>
         <module>modules/theme-switcher-action</module>
         <module>modules/theme-switcher-web</module>
+        <module>modules/theme-switcher-package</module>
     </modules>
 
     <properties>
@@ -29,6 +30,7 @@
         <maven.wagon.file.version>2.10</maven.wagon.file.version>
         <maven.wagon.plugin.version>1.0</maven.wagon.plugin.version>
         <maven.clean.plugin.version>3.0.0</maven.clean.plugin.version>
+        <maven.assembly.plugin.version>3.0.0</maven.assembly.plugin.version>
 
         <!-- The versions must be manually specified here since plugin dependencies
             are not BOM-managed -->
@@ -288,6 +290,11 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>wagon-maven-plugin</artifactId>
                     <version>${maven.wagon.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven.assembly.plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

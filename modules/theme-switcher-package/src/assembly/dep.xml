@@ -1,0 +1,26 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+    <id>lpkg</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>src/assembly</directory>
+            <outputDirectory>.</outputDirectory>
+            <filtered>true</filtered>
+            <fileMode>0644</fileMode>
+            <includes>
+                <include>liferay-marketplace.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <includes>
+                <include>com.savoirfairelinux.liferay:theme-switcher-*</include>
+            </includes>
+        </dependencySet>
+    </dependencySets>
+</assembly>
