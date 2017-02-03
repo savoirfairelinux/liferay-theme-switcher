@@ -8,7 +8,7 @@
     </parent>
     <packaging>pom</packaging>
     <artifactId>theme-switcher-package</artifactId>
-    <name>Theme switcher distribution package</name>
+    <name>Theme switcher package</name>
 
     <description>This package adds automatic theme switching functionality to Liferay</description>
 
