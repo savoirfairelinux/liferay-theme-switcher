@@ -10,6 +10,8 @@
     <artifactId>theme-switcher-package</artifactId>
     <name>Theme switcher distribution package</name>
 
+    <description>This package adds automatic theme switching functionality to Liferay</description>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -49,6 +51,53 @@
                         <id>create-lpkg</id>
                         <phase>package</phase>
                         <goals><goal>single</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-install</id>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <phase>install</phase>
+                        <goals><goal>install-file</goal></goals>
+                        <configuration>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${project.artifactId}</artifactId>
+                            <version>${project.version}</version>
+                            <packaging>lpkg</packaging>
+                            <file>${project.build.directory}/${project.build.finalName}.zip</file>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <configuration><skip>true</skip></configuration>
+                    </execution>
+                    <execution>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${project.artifactId}</artifactId>
+                            <version>${project.version}</version>
+                            <packaging>lpkg</packaging>
+                            <file>${project.build.directory}/${project.build.finalName}.zip</file>
+                            <url>${project.distributionManagement.repository.url}</url>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
