@@ -15,17 +15,16 @@ node {
     }
 
     stage('Maven build') {
+        boolean doDeploy = (GIT_BRANCH == 'master')
+        mavenGoal = doDeploy ? 'deploy' : 'package'
+
         try {
-            sh "${mvnHome}/bin/mvn -C clean package -Dbuild.number=jenkins-${env.BUILD_NUMBER}-${GIT_BRANCH}-${GIT_COMMIT}"
+            sh "${mvnHome}/bin/mvn -C clean ${mavenGoal} -Dbuild.number=jenkins-${env.BUILD_NUMBER}-${GIT_BRANCH}-${GIT_COMMIT}"
             // step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
         } catch(err) {
             // step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
             throw err
         }
-    }
-
-    stage('Archive artifacts') {
-        archiveArtifacts artifacts: '**/target/*.jar, **/target/*.war', fingerprint: true, onlyIfSuccessful: true
     }
 
     stage('Sonar analysis') {
