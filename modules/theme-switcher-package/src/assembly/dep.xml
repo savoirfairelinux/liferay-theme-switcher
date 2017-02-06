@@ -19,7 +19,7 @@
         <dependencySet>
             <useProjectArtifact>false</useProjectArtifact>
             <includes>
-                <include>com.savoirfairelinux.liferay:theme-switcher-*</include>
+                <include>com.savoirfairelinux.liferay.modules:theme-switcher-*</include>
             </includes>
         </dependencySet>
     </dependencySets>
