@@ -4,7 +4,7 @@
     <groupId>com.savoirfairelinux.liferay.modules</groupId>
     <artifactId>theme-switcher</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
 
     <name>Liferay 7 Theme Switcher</name>
 
@@ -97,6 +97,12 @@
         <dependency>
             <groupId>com.liferay.portal</groupId>
             <artifactId>com.liferay.portal.kernel</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.liferay</groupId>
+            <artifactId>com.liferay.journal.api</artifactId>
             <scope>provided</scope>
         </dependency>
 

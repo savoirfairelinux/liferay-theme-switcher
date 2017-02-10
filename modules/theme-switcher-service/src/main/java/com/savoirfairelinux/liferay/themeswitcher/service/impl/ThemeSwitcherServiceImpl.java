@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 import javax.portlet.PortletPreferences;
 import javax.servlet.http.HttpServletRequest;
 
+import com.liferay.journal.constants.JournalPortletKeys;
+import com.liferay.portal.kernel.util.*;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -21,12 +23,6 @@ import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.PortletPreferencesLocalService;
 import com.liferay.portal.kernel.service.ThemeLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.ColorSchemeFactoryUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.PortletKeys;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.savoirfairelinux.liferay.themeswitcher.meta.ThemeSwitcherPortletKeys;
 import com.savoirfairelinux.liferay.themeswitcher.service.ThemeSwitcherService;
 import com.savoirfairelinux.liferay.themeswitcher.service.configuration.ThemeSwitcherConfiguration;
@@ -43,6 +39,9 @@ public class ThemeSwitcherServiceImpl implements ThemeSwitcherService {
     private static final Log LOG = LogFactoryUtil.getLog(ThemeSwitcherServiceImpl.class);
 
     private static final Pattern URL_PATTERN = Pattern.compile("^/(([a-z]{2}(_[A-Z]{2})?/)?web(/.*)?)?$");
+
+    private static final String JOURNAL_PORTLET_MVCPATH_PARAM = StringPool.UNDERLINE + JournalPortletKeys.JOURNAL + "_mvcPath";
+    private static final String JOURNAL_PORTLET_MVCPATH_PREVIEW = "/preview_article_content.jsp";
 
     private GroupLocalService groupService;
     private Portal portal;
@@ -96,7 +95,12 @@ public class ThemeSwitcherServiceImpl implements ThemeSwitcherService {
                 .reduce(false, (hasFirstRole, hasSecondRole) -> (hasFirstRole || hasSecondRole));
             boolean isThemeBlank = StringPool.BLANK.equals(fallbackThemeId);
 
-            if(enabled && !isThemeBlank && hasAtLeastOneSelectedRole) {
+            String portletId = ParamUtil.getString(request, "p_p_id");
+            String mvcPath = ParamUtil.getString(request, JOURNAL_PORTLET_MVCPATH_PARAM);
+
+            boolean isJournalPreview = JournalPortletKeys.JOURNAL.equals(portletId) && JOURNAL_PORTLET_MVCPATH_PREVIEW.equals(mvcPath);
+
+            if(enabled && !isThemeBlank && hasAtLeastOneSelectedRole && !isJournalPreview) {
                 this.doSwitch(companyId,request, fallbackThemeId);
             }
 
