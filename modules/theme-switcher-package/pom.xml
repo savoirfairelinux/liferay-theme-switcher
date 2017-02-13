@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.savoirfairelinux.liferay.modules</groupId>
         <artifactId>theme-switcher</artifactId>
-        <version>0.0.3-SNAPSHOT</version>
+        <version>0.0.3</version>
         <relativePath>../../</relativePath>
     </parent>
     <packaging>pom</packaging>
@@ -98,6 +98,19 @@
                             <file>${project.build.directory}/${project.build.finalName}.zip</file>
                             <url>${project.distributionManagement.repository.url}</url>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>parse-version</id>
+                        <goals>
+                            <goal>parse-version</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

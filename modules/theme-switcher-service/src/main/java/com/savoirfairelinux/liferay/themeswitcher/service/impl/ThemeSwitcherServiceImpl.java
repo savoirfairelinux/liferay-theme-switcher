@@ -42,6 +42,7 @@ public class ThemeSwitcherServiceImpl implements ThemeSwitcherService {
 
     private static final String JOURNAL_PORTLET_MVCPATH_PARAM = StringPool.UNDERLINE + JournalPortletKeys.JOURNAL + "_mvcPath";
     private static final String JOURNAL_PORTLET_MVCPATH_PREVIEW = "/preview_article_content.jsp";
+    private static final String PORTLET_P_P_ID_URL_PARAMETER = "p_p_id";
 
     private GroupLocalService groupService;
     private Portal portal;
@@ -95,7 +96,7 @@ public class ThemeSwitcherServiceImpl implements ThemeSwitcherService {
                 .reduce(false, (hasFirstRole, hasSecondRole) -> (hasFirstRole || hasSecondRole));
             boolean isThemeBlank = StringPool.BLANK.equals(fallbackThemeId);
 
-            String portletId = ParamUtil.getString(request, "p_p_id");
+            String portletId = ParamUtil.getString(request, PORTLET_P_P_ID_URL_PARAMETER);
             String mvcPath = ParamUtil.getString(request, JOURNAL_PORTLET_MVCPATH_PARAM);
 
             boolean isJournalPreview = JournalPortletKeys.JOURNAL.equals(portletId) && JOURNAL_PORTLET_MVCPATH_PREVIEW.equals(mvcPath);
